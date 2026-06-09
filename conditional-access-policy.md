@@ -254,3 +254,84 @@ If you want, I can convert this into:
 * **Policy design blueprint (real-world scenarios)**
 * **Interview notes / cheat sheet**
 * **Comparison: Conditional Access vs Security Defaults vs Identity Protection**
+
+# Condition access policy during pentest
+**What They Are:**
+Conditional Access Policies (CAPs) in Microsoft Entra provide fine-grained control over when and how users authenticate. They are used to enforce MFA, restrict access based on location, device, risk level, and user role, and are essential for modern identity security.
+
+CAPs replace or enhance default MFA protections and must be used instead of Security Defaults in complex environments.
+
+**🔐 Microsoft MFA Basics (Relevant for Pen testing)**
+•	MFA options include:
+o	Microsoft Authenticator App
+o	SMS or Voice Call
+o	Hardware OAUTH tokens
+•	Security Defaults (baseline protection):
+o	Enforce MFA registration for all users
+o	Block legacy authentication protocols (IMAP, EWS, POP)
+o	Require MFA for privileged actions (like portal access)
+o	Must be disabled to enable Conditional Access Policies
+
+## 🎯 How Conditional Access Impacts Pentesting
+✅ 1. Determines Your Attack Surface
+•	CAPs define whether MFA is enforced or bypassed under certain conditions.
+•	Pen testers must test:
+o	Geolocation-based rules (e.g., “only allow login from specific countries”)
+o	Device compliance (e.g., corporate-joined vs. BYOD)
+o	Risk-based access (e.g., sign-in risk score from Identity Protection)
+✅ 2. Used to Bypass or Evade MFA
+•	Look for scenarios where CAPs don’t enforce MFA, such as:
+o	Service accounts or legacy protocols
+o	Logins from "trusted" locations or IPs
+o	Specific user groups with weaker rules
+✅ 3. Can Be Abused by Privileged Users
+•	If a Global Admin or Conditional Access admin is compromised, policies can be:
+o	Disabled or edited to allow MFA bypass
+o	Used to create targeted exclusions for persistence or lateral movement
+✅ 4. Gives Insight Into Attack Paths
+•	Understanding how CAPs are structured can help:
+o	Map out privileged paths to sensitive apps
+o	Identify weak policy configurations that allow token theft, Golden SAML, or session hijacking
+________________________________________
+🧰 Pen tester Workflow Example: CAP Recon and Exploitation
+1.	Recon: Use AzureAD or MS Graph API to dump Conditional Access policies (if permissions allow).
+2.	Analyze: Look for exclusions, IP whitelists, or misconfigured conditions.
+3.	Exploit: Attempt authentication with stolen credentials from an IP range or device that bypasses CAP.
+4.	Persist: If Global Admin is compromised, create or modify CAPs to ensure backdoor access (e.g., exclude a service account from MFA).
+
+
+## Enumerate Conditional Access Policies via Graph API
+✅ Requirements:
+•	Permissions: Policy.Read.All, Directory.Read.All, or Security.Read.All
+•	Admin consent must be granted (typically for red team ops via token abuse or post-compromise)
+•	Microsoft.Graph PowerShell SDK installed
+________________________________________
+🔹 Installation (if needed)
+Install-Module Microsoft.Graph -Scope CurrentUser
+________________________________________
+🔹 Login and Consent (Interactive)
+Connect-MgGraph -Scopes "Policy.Read.All", "Directory.Read.All"
+If you're post-exploitation and using a token instead, you can also authenticate with MSAL or import a token directly (ask if you'd like that version too).
+________________________________________
+🔹 Enumerate Conditional Access Policies
+# List all Conditional Access policies
+$policies = Get-MgConditionalAccessPolicy
+
+# Display basic info
+$policies | Select-Object Id, DisplayName, State, Conditions, GrantControls | Format-List
+________________________________________
+🧠 What This Shows You
+Field
+* DisplayName - Policy name — often describes intent or coverage
+* State - Enabled / Disabled / Report-only
+* Conditions - Who/what it applies to (users, apps, IPs, platforms)
+* GrantControls - MFA requirements, session controls, block/allow logic
+
+
+________________________________________
+🔍 Example Red Team Questions to Ask
+•	Is MFA enforced for all users, or only certain groups?
+•	Are any trusted IPs or device platforms excluded?
+•	Are legacy auth protocols still allowed via exceptions?
+•	Can you target a service principal or app that isn’t subject to any CAP?
+
