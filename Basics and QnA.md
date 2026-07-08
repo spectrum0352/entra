@@ -1,5 +1,3 @@
- 
-
 1. Identity Concepts
 	· Identity = digital representation of users, devices, or services.
 	· Used to recognize who/what is interacting with a system.
