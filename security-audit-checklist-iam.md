@@ -6,11 +6,10 @@
 
 * **Purpose:** Identify brute-force and credential-based attacks early
 * **Checklist:**
-
   * Log all failed login attempts
   * Trigger alerts after defined thresholds (e.g., 5 attempts in 2 minutes)
   * Enforce account lockout policies
-* **Risk if Missing:** Account compromise via brute-force or credential stuffing 
+* **Risk if Missing:** Account compromise via brute-force or credential stuffing
 * **Impact:** High (unauthorized access, data breach)
 * **Cost:** Medium–High (SIEM/logging + alerting setup)
 
@@ -20,7 +19,6 @@
 
 * **Purpose:** Strengthen authentication beyond passwords
 * **Checklist:**
-
   * MFA for all users (mandatory for admins & remote access)
   * Prefer hardware/Authenticator apps over SMS
 * **Risk if Missing:** Credential theft leads directly to compromise 
@@ -33,7 +31,6 @@
 
 * **Purpose:** Prevent weak password exploitation
 * **Checklist:**
-
   * Minimum length ≥ 12–15 characters
   * Encourage passphrases and password managers
 * **Risk if Missing:** Easy password cracking attacks 
@@ -1208,19 +1205,16 @@ Map each control to ISO 27001, NIST, CIS controls
 Create real audit interview scripts (consultant-style)
 Provide Sentinel KQL queries for IAM monitoring validation
 
-
-Below are real-world, consultant-style IAM audit interview scripts used in Big4 / enterprise assessments. These are designed for structured stakeholder interviews, combining probing questions, follow-ups, red flags, and validation cues.
-Use these during workshops, audits, or client engagements.
-________________________________________
 🎤 IAM AUDIT INTERVIEW SCRIPTS (CONSULTANT-STYLE)
-________________________________________
+
 1. 🧑‍💼 HR / IDENTITY LIFECYCLE OWNER INTERVIEW
+
 🎯 Objective
 Validate Joiner-Mover-Leaver (JML) process and HR integration.
-________________________________________
+
 🗣️ Opening Script
 “Can you walk me through how an employee joins the organization from an HR system perspective, and how that triggers IT account creation?”
-________________________________________
+
 🔍 Core Questions
 Joiner Process
 What system is considered the source of truth for employee data?
@@ -1477,7 +1471,7 @@ Contracts
 Access review records
 ________________________________________
 ________________________________________
-8. 📜 IAM GOVERNANCE / CISO INTERVIEW
+8. 📜 IAM GOVERNANCE
 🎯 Objective
 Assess IAM strategy, policies, and governance maturity.
 ________________________________________
@@ -1522,22 +1516,15 @@ Logs vs claims
 Inconsistencies
 Manual workarounds
 Shadow processes
-________________________________________
+
 📌 Deliverable Tip
 After interviews, convert responses into:
 Control maturity score
 Gap analysis
 Risk rating
 Remediation roadmap
-________________________________________
-If you want next level (this will make you stand out as a senior consultant), I can:
-Create real scoring sheets + weighted risk model
-Provide ready-to-use Excel interview tracker
-Build client workshop deck (PPT)
-Add Microsoft Entra ID / Sentinel-specific interview mapping
 
-Audit checklist – IAM
-
+## Audit checklist – IAM
 
 Access Management:
 Principle of Least Privilege and Separation of Duties enforcement.
@@ -1646,7 +1633,7 @@ Use strong passwords and access keys: Enforce strong password policies and rotat
 
 
 
-IAM Security Checklist
+## IAM Security Checklist
 Access permissions and authorizations are managed, incorporating the principles of least privilege and separation of duties
 Allow least privileges on ports in firewalls, network ACLs, security groups, iptables/firewalld, Windows Advanced Firewalls and the like.
 Always use Centralized IAM system and disable location authentication system.
@@ -1684,7 +1671,3 @@ Self-service group management enabled
 SQL Database should have Cloud Providers IAM (Azure AD) Only Authentication enabled
 Use centralized identity and authentication system, disable local authentication system
 Users to create and manage security groups
-
-
-
-
