@@ -80,4 +80,21 @@ A secure and well-organized Microsoft Entra (Azure AD) tenant begins with a stru
 
 By following these best practices – as detailed in Microsoft’s documentation – you ensure your Microsoft Entra tenant is securely configured, resilient, and well-governed. Each step closes gaps and prepares your environment for Zero Trust operations.
 Sources: Microsoft official documentation and guidance (Microsoft Entra / Azure AD) for security and identity best practices, ensuring all recommendations are current and comprehensive.
-________________________________________
+
+Entra Security Baseline
+
+Azure AD Baseline Level 1:
+•	Restrict access to the Azure AD administration portal
+•	About guests: Azure AD  Users  Check present guest users
+•	Notify users on password resets
+•	Require two methods to reset passwords
+•	Establish an interval for reconfirming user authentication methods
+
+Azure AD Baseline Level 2:
+•	Enable Azure AD Multi-Factor Authentication
+•	Block remembering MFA on trusted devices
+•	Notify all admins when other admins reset passwords
+•	Members and guests can invite
+•	Users to create and manage security groups
+•	Self-service group management enabled
+•	Application options - Allow users to register apps

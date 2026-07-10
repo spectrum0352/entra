@@ -2,8 +2,6 @@ Welcome to the microsoft-entra wiki!
 
 [Identity and Access Management with Microsoft Entra ID and Active Directory.docx](https://github.com/user-attachments/files/27312907/Identity.and.Access.Management.with.Microsoft.Entra.ID.and.Active.Directory.docx)
 
-
-
 •	Access Aggregation:
 Attackers gather many small pieces of harmless information from different places and combine them to get bigger access across multiple systems. This is often linked to privilege creep (when users get more access than they need over time).
 •	Access Control:
@@ -61,23 +59,7 @@ Allows users to reset their own passwords without needing help from IT.
 •	Session Key:
 Temporary keys created during secure connections (like SSH) to protect communication without sharing permanent keys.
 
-Entra Security Baseline
 
-Azure AD Baseline Level 1:
-•	Restrict access to the Azure AD administration portal
-•	About guests: Azure AD  Users  Check present guest users
-•	Notify users on password resets
-•	Require two methods to reset passwords
-•	Establish an interval for reconfirming user authentication methods
-
-Azure AD Baseline Level 2:
-•	Enable Azure AD Multi-Factor Authentication
-•	Block remembering MFA on trusted devices
-•	Notify all admins when other admins reset passwords
-•	Members and guests can invite
-•	Users to create and manage security groups
-•	Self-service group management enabled
-•	Application options - Allow users to register apps
 
 Access Aggregation: Associated with privilege creep, this technique also functions as a reconnaissance tool by attackers to collect multiple pieces of non-sensitive data, which is combined to gain greater access across more systems. 
 Access control is the act of limiting who or what can access something, like a building or computer system.
