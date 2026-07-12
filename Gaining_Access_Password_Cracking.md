@@ -1,4 +1,4 @@
-# Gaining Access -- Password Cracking
+# Gaining Access - Password Cracking
 
 ## Overview
 
